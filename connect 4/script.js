@@ -58,10 +58,10 @@ function checkTurn() {
 function checkwinner() {
 
     for (let i = 0; i < divs.length; i++) {
-        if (divs[i].style.backgroundColor == one && divs[i + 1].style.backgroundColor == one && divs[i + 2].style.backgroundColor == one && divs[i + 3].style.backgroundColor == one) {
+        if (divs[i].style.backgroundColor === one && divs[i + 1].style.backgroundColor === one && divs[i + 2].style.backgroundColor === one && divs[i + 3].style.backgroundColor === one) {
             gameover(one);
         }
-        if (divs[i].style.backgroundColor == two && divs[i + 1].style.backgroundColor == two && divs[i + 2].style.backgroundColor == two && divs[i + 3].style.backgroundColor == two) {
+        if (divs[i].style.backgroundColor === two && divs[i + 1].style.backgroundColor === two && divs[i + 2].style.backgroundColor === two && divs[i + 3].style.backgroundColor === two) {
             gameover(two);
         }
 
@@ -69,10 +69,10 @@ function checkwinner() {
     }
 
     for (let j = 0; j < divs.length; j++) {
-        if (divs[j].style.backgroundColor == one && divs[j + (width / 10)].style.backgroundColor == one && divs[j + 2 * (width / 10)].style.backgroundColor == one && divs[j + 3 * (width / 10)].style.backgroundColor == one) {
+        if (divs[j].style.backgroundColor === one && divs[j + (width / 10)].style.backgroundColor === one && divs[j + 2 * (width / 10)].style.backgroundColor === one && divs[j + 3 * (width / 10)].style.backgroundColor === one) {
             gameover(one);
         }
-        if (divs[j].style.backgroundColor == two && divs[j + (width / 10)].style.backgroundColor == two && divs[j + 2 * (width / 10)].style.backgroundColor == two && divs[j + 3 * (width / 10)].style.backgroundColor == two) {
+        if (divs[j].style.backgroundColor === two && divs[j + (width / 10)].style.backgroundColor === two && divs[j + 2 * (width / 10)].style.backgroundColor === two && divs[j + 3 * (width / 10)].style.backgroundColor === two) {
             gameover(two);
         }
 
@@ -83,13 +83,17 @@ function checkwinner() {
 function gameover(color) {
 
     setTimeout(() => { alert(`game over ${color} win`) }, 100);
-    document.querySelector(".one").classList.remove("turn");
-    document.querySelector(".two").classList.remove("turn");
+
     divs.forEach(div => {
         setTimeout(() => { div.style.backgroundColor = 'white' }, 1000 * 2);
     })
 
-
+    if (turn === 2) {
+        turn = 1;
+    }
+    else if (turn === 1) {
+        turn = 2;
+    }
 
 
 }
