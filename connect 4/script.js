@@ -5,6 +5,8 @@ const divs = [];
 let turn = Math.floor(Math.random() * 2 + 1);
 let one = 'blue';
 let two = 'green';
+const rows = height / 10
+const cols = width / 10
 
 board.addEventListener("click", ev => {
     elem = ev.target;
@@ -57,7 +59,7 @@ function checkTurn() {
 
 function checkwinner() {
 
-    for (let i = 0; i < divs.length; i++) {
+    for (let i = 0; i < divs.length - 3; i++) {
         if (divs[i].style.backgroundColor === one && divs[i + 1].style.backgroundColor === one && divs[i + 2].style.backgroundColor === one && divs[i + 3].style.backgroundColor === one) {
             gameover(one);
         }
@@ -68,7 +70,7 @@ function checkwinner() {
 
     }
 
-    for (let j = 0; j < divs.length; j++) {
+    for (let j = 0; j < divs.length - 3 * (width / 10); j++) {
         if (divs[j].style.backgroundColor === one && divs[j + (width / 10)].style.backgroundColor === one && divs[j + 2 * (width / 10)].style.backgroundColor === one && divs[j + 3 * (width / 10)].style.backgroundColor === one) {
             gameover(one);
         }
@@ -76,6 +78,24 @@ function checkwinner() {
             gameover(two);
         }
 
+
+    }
+    for (let e = 0; e < divs.length - 3 * 8; e++) {
+        if (divs[e].style.backgroundColor === one && divs[e + 8].style.backgroundColor === one && divs[e + 2 * 8].style.backgroundColor === one && divs[e + 3 * 8].style.backgroundColor === one) {
+            gameover(one);
+        }
+        if (divs[e].style.backgroundColor === two && divs[e + 8].style.backgroundColor === two && divs[e + 2 * 8].style.backgroundColor === two && divs[e + 3 * 8].style.backgroundColor === two) {
+            gameover(two);
+        }
+
+    }
+    for (let f = 0; f < divs.length - 3 * 6; f++) {
+        if (divs[f].style.backgroundColor === one && divs[f + 6].style.backgroundColor === one && divs[f + 2 * 6].style.backgroundColor === one && divs[f + 3 * 6].style.backgroundColor === one) {
+            gameover(one);
+        }
+        if (divs[f].style.backgroundColor === two && divs[f + 6].style.backgroundColor === two && divs[f + 2 * 6].style.backgroundColor === two && divs[f + 3 * 6].style.backgroundColor === two) {
+            gameover(two);
+        }
 
     }
 }
@@ -97,5 +117,3 @@ function gameover(color) {
 
 
 }
-
-
