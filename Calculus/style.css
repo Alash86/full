@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    direction: rtl;
+    direction: ltr;
     background-color: #b4a9a9;
     padding-bottom: 200px;
     text-align: center;
