@@ -13,16 +13,16 @@
 <body>
     <h1>לומדת חשבון</h1>
     <div id="board">
-        <div>
+        <div class="choose">
             <label for="numbers">בחר טווח מספרים :</label>
-            <select name="numbers" id="nums" oninput="choose()">
+            <select name="numbers" id="nums">
                 <option aria-valuemin="1" aria-valuemax="10">1-10</option>
                 <option aria-valuemin="1" aria-valuemax="100">1-100</option>
                 <option aria-valuemin="1" aria-valuemax="1000">1-1000</option>
                 <option aria-valuemin="1" aria-valuemax="10000">1-10000</option>
             </select>
         </div>
-        <div>
+        <div class="choose">
             <label for="operator">בחר אופרטור :</label>
             <select name="operator" id="oper">
                 <option value="+">פלוס +</option>
@@ -32,10 +32,23 @@
             </select>
         </div>
 
-        <button onclick="randomize(),choose(),calculate()">התחל</button>
+
+
+
 
         <div class="task">
-            <span id="res"></span>
+            <button onclick="calculate()">התחל מבחן </button>
+            <span id="test"></span>
+
+            <input type="number" id="answer" placeholder="תשובה">
+            <button onclick="checkRes()">בדוק את התשובה</button>
+
+            <div id="res">
+                <ol>
+
+                </ol>
+            </div>
+
         </div>
     </div>
 </body>
