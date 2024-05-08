@@ -70,8 +70,11 @@ select {
 
 button {
     font-size: 25px;
-
+    border: 2px solid #000;
+    border-radius: 50px;
     margin: 10px;
+    padding: 10px;
+    background-color: bisque;
 }
 
 #test {
@@ -104,4 +107,10 @@ ol {
     font-size: 25px;
     text-align: center;
     width: 100px;
+    font-size: 25px;
+    border: 2px solid #000;
+    border-radius: 50px;
+    margin: 10px;
+    padding: 10px;
+    background-color: bisque;
 }
