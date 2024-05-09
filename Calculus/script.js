@@ -60,6 +60,13 @@ function calculate() {
     div.innerHTML = result;
     li.appendChild(div);
 
+    const btn = document.createElement('button');
+    btn.innerHTML = 'x'; // יצירת אירוע - כל לחיצה על הלחצן תפעיל את הפונקציה של המחיקה
+    btn.addEventListener('click', function () {
+        const isAllowed = confirm(`האם אתה בטוח כי ברצונך למחוק את ${div.innerHTML}?`); if (isAllowed) {
+            li.remove();
+        }
+    })
 
 
 }
@@ -73,17 +80,7 @@ function checkRes() {
     document.querySelector("#res").style.display = "block";
 }
 
-// // יצירת לחצן מחיקה
-// const btn = document.createElement('button');
-// btn.innerHTML = 'x';
-
-// // יצירת אירוע - כל לחיצה על הלחצן תפעיל את הפונקציה של המחיקה
-// btn.addEventListener('click', function () {
-//     const isAllowed = confirm(`האם אתה בטוח כי ברצונך למחוק את ${div.innerHTML}?`);
-
-//     if (isAllowed) {
-//         li.remove();
-//     }
+// יצירת לחצן מחיקה
 
 //     saveTasks();
 // });
