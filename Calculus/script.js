@@ -61,13 +61,14 @@ function calculate() {
     li.appendChild(div);
 
     const btn = document.createElement('button');
+    li.appendChild(btn);
     btn.innerHTML = 'x'; // יצירת אירוע - כל לחיצה על הלחצן תפעיל את הפונקציה של המחיקה
     btn.addEventListener('click', function () {
         const isAllowed = confirm(`האם אתה בטוח כי ברצונך למחוק את ${div.innerHTML}?`); if (isAllowed) {
             li.remove();
         }
     })
-
+    saveTests()
 
 }
 function checkRes() {
@@ -88,29 +89,40 @@ function checkRes() {
 // li.appendChild(btn);
 
 // div.addEventListener('input', saveTasks);
+function saveTests() {
+    const list = document.querySelectorAll('.tasks li');
+    const arr = [];
+    for (const li of list) {
+        const name = li.querySelector('div').innerText.trim();
+        if (name) {
+            arr.push(name);
+        }
+        localStorage.setItem('tasks', JSON.stringify(arr));
 
+    }
+}
+function restoreTests() {
+    if (localStorage.tasks) {
+        const tasks = JSON.parse(localStorage.tasks);
+        for (const task of tasks) {
+            newTask(task);
+        }
+    }
+}
 
-// function saveTasks() {
-//     const list = document.querySelectorAll('.tasks li');
-//     const arr = [];
-
-//     for (const li of list) {
-//         const name = li.querySelector('div').innerText.trim();
-
-//         if (name) {
-//             arr.push(name);
-//         }
-//     }
-
-//     localStorage.setItem('tasks', JSON.stringify(arr));
-// }
-
-// function initialData() {
-//     if (localStorage.tasks) {
-//         const tasks = JSON.parse(localStorage.tasks);
-
-//         for (const task of tasks) {
-//             newTask(task);
-//         }
-//     }
-// }
+function newTask(task) {
+    const li = document.createElement('li');
+    ol.appendChild(li);
+    const div = document.createElement('div');
+    div.innerHTML = task;
+    li.appendChild(div);
+    const btn = document.createElement('button');
+    li.appendChild(btn);
+    btn.innerHTML = 'x';
+    btn.addEventListener('click', function () {
+        const isAllowed = confirm(`האם אתה בטוח כי ברצונך למחוק את ${div.innerHTML}?`);
+        if (isAllowed) {
+            li.remove();
+        }
+    });
+}

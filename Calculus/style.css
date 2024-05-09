@@ -96,6 +96,14 @@ button {
 
 ol {
     font-size: 25px;
+
+}
+
+li {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
 }
 
 #res>ol>li>div {
