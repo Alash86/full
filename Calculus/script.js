@@ -33,21 +33,21 @@ function calculate() {
 
     switch (operator) {
         case '+':
-            test = `השאלה היא : ${randomOne} + ${randomTwo} `;
+            test = `Question : ${randomOne} + ${randomTwo}`;
             total = randomOne + randomTwo;
-            result = `הפיתרון המלא : ${randomOne} + ${randomTwo} = ${total} `; break;
+            result = `Answer : ${randomOne} + ${randomTwo} = ${total} `; break;
         case '-':
-            test = `השאלה היא : ${randomOne} - ${randomTwo} `;
+            test = `Question : ${randomOne} - ${randomTwo} `;
             total = randomOne - randomTwo;
-            result = ` הפיתרון המלא : ${randomOne} - ${randomTwo} = ${total} `; break;
+            result = `Answer : ${randomOne} - ${randomTwo} = ${total} `; break;
         case '*':
-            test = `השאלה היא : ${randomOne} * ${randomTwo} `;
+            test = `Question : ${randomOne} * ${randomTwo} `;
             total = randomOne * randomTwo;
-            result = `הפיתרון המלא : ${randomOne} * ${randomTwo} = ${total} `; break;
+            result = `Answer : ${randomOne} * ${randomTwo} = ${total} `; break;
         case '/':
-            test = `השאלה היא : ${randomOne} /${randomTwo} `;
+            test = `Question : ${randomOne} / ${randomTwo} `;
             total = randomOne / randomTwo;
-            result = ` הפיתרון המלא: ${randomOne} / ${randomTwo} = ${total} `; break;
+            result = ` Answer : ${randomOne} / ${randomTwo} = ${total} `; break;
     }
 
     document.querySelector("#test").innerText = test;
@@ -62,10 +62,12 @@ function calculate() {
 
     const btn = document.createElement('button');
     li.appendChild(btn);
-    btn.innerHTML = 'x'; // יצירת אירוע - כל לחיצה על הלחצן תפעיל את הפונקציה של המחיקה
+    btn.innerHTML = 'x';
+
     btn.addEventListener('click', function () {
         const isAllowed = confirm(`האם אתה בטוח כי ברצונך למחוק את ${div.innerHTML}?`); if (isAllowed) {
             li.remove();
+            saveTests();
         }
     })
     saveTests()
@@ -79,18 +81,12 @@ function checkRes() {
         alert('התשובה לא נכונה')
     }
     document.querySelector("#res").style.display = "block";
+
 }
 
-// יצירת לחצן מחיקה
 
-//     saveTasks();
-// });
-
-// li.appendChild(btn);
-
-// div.addEventListener('input', saveTasks);
 function saveTests() {
-    const list = document.querySelectorAll('.tasks li');
+    const list = document.querySelectorAll('#res ol li');
     const arr = [];
     for (const li of list) {
         const name = li.querySelector('div').innerText.trim();

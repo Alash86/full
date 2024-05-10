@@ -94,21 +94,26 @@ button {
     margin: 20px;
 }
 
-ol {
+#res>ol {
     font-size: 25px;
 
 }
 
-li {
-    display: flex;
+#res>ol>li {
 
-    justify-content: center;
-    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 700px;
+    direction: ltr;
+
+
 }
 
 #res>ol>li>div {
     font-size: 25px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #answer {

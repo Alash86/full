@@ -73,6 +73,7 @@ h1 {
 .players {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .turn {
@@ -84,5 +85,18 @@ h1 {
 @keyframes blinker {
     50% {
         opacity: 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #board {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+    }
+
+    #board>div {
+        height: 75%;
+        width: 75%;
     }
 }
