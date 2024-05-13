@@ -2,11 +2,33 @@ const board = document.querySelector("#board");
 const width = 70;
 const height = 60;
 const divs = [];
-let turn = Math.floor(Math.random() * 2 + 1);
+let turn = Math.floor(Math.random() * 2) + 1;
 let one = 'blue';
 let two = 'green';
 const rows = height / 10
 const cols = width / 10
+let win1 = 0;
+let win2 = 0;
+player1 = document.querySelector('#player1 span');
+player2 = document.querySelector('#player2 span');
+
+
+
+function createBoard() {
+    board.style.gridTemplateColumns = `repeat(${width / 10}, 1fr)`;
+
+    for (let i = 0; i < (width * height / 100); i++) {
+        const div = document.createElement("div");
+        div.innerText = i;
+        board.appendChild(div);
+        divs.push(div);
+    }
+
+    win1 = localStorage.getItem('one');
+    player1.innerText = win1;
+    win2 = localStorage.getItem('two');
+    player2.innerText = win2;
+}
 
 board.addEventListener("click", ev => {
     elem = ev.target;
@@ -32,18 +54,6 @@ board.addEventListener("click", ev => {
 
 
 
-function createBoard() {
-    board.style.gridTemplateColumns = `repeat(${width / 10}, 1fr)`;
-
-    for (let i = 0; i < (width * height / 100); i++) {
-        const div = document.createElement("div");
-        div.innerText = i;
-        board.appendChild(div);
-        divs.push(div);
-    }
-
-
-}
 
 function checkTurn() {
     document.querySelector(".one").classList.remove("turn");
@@ -103,6 +113,14 @@ function checkwinner() {
 function gameover(color) {
 
     setTimeout(() => { alert(`game over ${color} win`) }, 100);
+    if (color === 'blue') {
+        win1++;
+        document.querySelector('#player1 span').innerText = win1;
+    }
+    else if (color === 'green') {
+        win2++;
+        document.querySelector('#player2 span').innerText = win2;
+    }
 
     divs.forEach(div => {
         setTimeout(() => { div.style.backgroundColor = 'white' }, 1000 * 2);
@@ -115,5 +133,16 @@ function gameover(color) {
         turn = 2;
     }
 
+    localStorage.setItem('one', win1);
+    localStorage.setItem('two', win2);
+
+}
+function reset() {
+    win1 = 0;
+    win2 = 0;
+    player1.innerText = win1;
+    player2.innerText = win2;
+    localStorage.setItem('one', win1);
+    localStorage.setItem('two', win2);
 
 }
