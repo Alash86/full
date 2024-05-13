@@ -5,56 +5,56 @@ let randomOne
 let randomTwo
 let total
 let result = '';
-const tasks = document.querySelector(".tasks");
 const task = document.querySelector('#res');
 const ol = document.createElement('ol');
+let point = 0;
+task.appendChild(ol);
 
 
 
 function calculate() {
     val = document.querySelector("#nums").value;
     operator = document.querySelector("#oper").value;
-    document.querySelector("#res").style.display = "none";
-    let result = 0;
+    task.style.display = "none";
     switch (val) {
         case '1-10':
-            randomOne = Math.floor((Math.random() * 10) + 1);
-            randomTwo = Math.floor((Math.random() * 10) + 1); break
+            randomOne = Math.floor(Math.random() * 10) + 1;
+            randomTwo = Math.floor(Math.random() * 10) + 1; break
         case '1-100':
-            randomOne = Math.floor((Math.random() * 100) + 1);
-            randomTwo = Math.floor((Math.random() * 100) + 1); break
+            randomOne = Math.floor(Math.random() * 100) + 1;
+            randomTwo = Math.floor(Math.random() * 100) + 1; break
         case '1-1000':
-            randomOne = Math.floor((Math.random() * 1000) + 1);
-            randomTwo = Math.floor((Math.random() * 1000) + 1); break
+            randomOne = Math.floor(Math.random() * 1000) + 1;
+            randomTwo = Math.floor(Math.random() * 1000) + 1; break
         case '1-10000':
-            randomOne = Math.floor((Math.random() * 10000) + 1);
-            randomTwo = Math.floor((Math.random() * 10000) + 1); break
+            randomOne = Math.floor(Math.random() * 10000) + 1;
+            randomTwo = Math.floor(Math.random() * 10000) + 1; break
     }
 
     switch (operator) {
         case '+':
-            test = `Question : ${randomOne} + ${randomTwo}`;
+            test = ` Question is : ${randomOne} + ${randomTwo} `;
             total = randomOne + randomTwo;
             result = `Answer : ${randomOne} + ${randomTwo} = ${total} `; break;
         case '-':
-            test = `Question : ${randomOne} - ${randomTwo} `;
+            test = `Question is : ${randomOne} - ${randomTwo} `;
             total = randomOne - randomTwo;
             result = `Answer : ${randomOne} - ${randomTwo} = ${total} `; break;
         case '*':
-            test = `Question : ${randomOne} * ${randomTwo} `;
+            test = `Question is : ${randomOne} * ${randomTwo} `;
             total = randomOne * randomTwo;
             result = `Answer : ${randomOne} * ${randomTwo} = ${total} `; break;
         case '/':
-            test = `Question : ${randomOne} / ${randomTwo} `;
+            test = `Question is : ${randomOne} /${randomTwo} `;
             total = randomOne / randomTwo;
-            result = ` Answer : ${randomOne} / ${randomTwo} = ${total} `; break;
+            result = `Answer : ${randomOne} / ${randomTwo} = ${total} `; break;
     }
 
     document.querySelector("#test").innerText = test;
 
     const li = document.createElement('li');
     ol.appendChild(li);
-    task.appendChild(ol);
+
 
     const div = document.createElement('div');
     div.innerHTML = result;
@@ -62,32 +62,41 @@ function calculate() {
 
     const btn = document.createElement('button');
     li.appendChild(btn);
-    btn.innerHTML = 'x';
-
+    btn.innerHTML = 'x'; // יצירת אירוע - כל לחיצה על הלחצן תפעיל את הפונקציה של המחיקה
     btn.addEventListener('click', function () {
         const isAllowed = confirm(`האם אתה בטוח כי ברצונך למחוק את ${div.innerHTML}?`); if (isAllowed) {
-            li.remove();
+            li.remove()
             saveTests();
+
         }
     })
-    saveTests()
+
 
 }
 function checkRes() {
     answer = document.querySelector("#answer").value;
-    if (answer == total) {
+    if (answer === '' || answer === undefined) {
+        alert('אנא הכנס תשובה')
+        return;
+    }
+    else if (answer == total) {
         alert('התשובה נכונה')
+        point++
+        answer = '';
+
     } else {
         alert('התשובה לא נכונה')
+        answer = '';
     }
-    document.querySelector("#res").style.display = "block";
-
+    task.style.display = "block";
+    document.querySelector("#points").innerText = `Correct answers is : ${point}`;
+    localStorage.x = point;
+    saveTests()
 }
 
-
 function saveTests() {
-    const list = document.querySelectorAll('#res ol li');
     const arr = [];
+    const list = document.querySelectorAll('#res ol li');
     for (const li of list) {
         const name = li.querySelector('div').innerText.trim();
         if (name) {
@@ -104,6 +113,7 @@ function restoreTests() {
             newTask(task);
         }
     }
+    point = localStorage.x;
 }
 
 function newTask(task) {
@@ -118,7 +128,15 @@ function newTask(task) {
     btn.addEventListener('click', function () {
         const isAllowed = confirm(`האם אתה בטוח כי ברצונך למחוק את ${div.innerHTML}?`);
         if (isAllowed) {
-            li.remove();
+            li.remove()
+            saveTests();
+
         }
     });
+}
+
+function resetPoint() {
+    localStorage.x = 0;
+    point = 0;
+    document.querySelector("#points").innerText = `Correct answers is : ${point}`;
 }
