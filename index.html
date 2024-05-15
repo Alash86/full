@@ -7,14 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
-    <title>Snake</title>
+    <title>Star Wars</title>
 </head>
 
 <body>
+    <h1>Star Wars API</h1>
+    <select name="" id="choose" onchange="apiChoose()" required>
+        <option>Pls select API</option>
+        <option>films</option>
+        <option>people</option>
+        <option>planets</option>
+        <option>species</option>
+        <option>starships</option>
+    </select>
 
-    <div id="board"></div>
+    <div class="result">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Director</th>
+                    <th>Release_date</th>
+                    <th>Episode_id</th>
+                    <th>Producer</th>
+                    <th>Characters</th>
 
+                </tr>
+            </thead>
+            <tbody>
 
+            </tbody>
+        </table>
+    </div>
 </body>
 
 </html>
