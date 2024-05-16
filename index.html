@@ -10,7 +10,7 @@
     <title>Star Wars</title>
 </head>
 
-<body>
+<body onload="stopLoader()">
     <h1>Star Wars API</h1>
     <select name="" id="choose" onchange="apiChoose()" required>
         <option>Pls select API</option>
@@ -20,7 +20,7 @@
         <option>species</option>
         <option>starships</option>
     </select>
-
+    <div class="loader"></div>
     <div class="result">
         <table>
             <thead>
