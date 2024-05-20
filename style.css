@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;600;700;900&display=swap');
-
 body {
     background-color: #d9d9d9;
 
 }
 
 * {
-    font-family: 'Rubik', sans-serif !important;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -15,7 +15,13 @@ h1 {
     margin: 26px;
 }
 
+#choose {
 
+    margin: auto;
+    inset: 0;
+    display: block;
+    text-align: center;
+}
 
 #choose,
 option {
@@ -26,14 +32,15 @@ option {
     font-size: 20px;
     font-weight: bold;
     background-color: #c1c5cc;
-    text-align: center;
+    margin-bottom: 20px;
 
 }
 
 table {
-    width: 100%;
+    width: 100vw;
     border-collapse: collapse;
     margin-top: 16px;
+    margin: auto;
 }
 
 tr {
@@ -67,12 +74,7 @@ td {
 
 }
 
-th:first-child {
-    color: red;
-    font-size: 20px;
-    font-weight: bold;
-}
-
+th:first-child,
 td:first-child {
     color: red;
     font-size: 20px;
@@ -80,8 +82,9 @@ td:first-child {
 }
 
 
+
 .characters,
-.starships {
+.films {
     padding: 6px;
     text-align: center;
     word-wrap: break-word;
@@ -92,35 +95,13 @@ td:first-child {
 
 
 .characters img,
-.starships img {
+.films img {
     width: 80px;
     display: inline-block;
-    width: 80px;
-    /* Adjust image width as needed */
-    height: auto;
     margin-right: 10px;
-    /* Adjust margin as needed */
-    /* Adjust image width as needed */
     height: auto;
     margin: 5px;
-    /* Adjust margin as needed */
-}
 
-.films {
-    width: 300px;
-    display: flex;
-
-}
-
-.films td {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-}
-
-.films img {
-    width: 200px;
-    height: 200px;
 }
 
 .loader {
@@ -146,4 +127,77 @@ td:first-child {
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    h1 {
+        font-size: 30px;
+    }
+
+    #choose,
+    option {
+        font-size: 15px;
+    }
+
+    table {
+        width: 90vw;
+        border-collapse: collapse;
+        margin-top: 16px;
+    }
+
+    th,
+    td {
+        font-size: 8px;
+        width: auto;
+        word-wrap: break-word;
+    }
+
+    th:first-child {
+        font-size: 10px;
+    }
+
+
+
+    .characters,
+    .films {
+
+        text-align: center;
+        word-wrap: break-word;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr)
+    }
+
+
+
+    .characters img,
+    .films img {
+        width: 30px;
+
+        display: inline-block;
+
+        height: 30px;
+
+    }
+
+    .loader {
+
+
+        border: 16px solid #f3f3f3;
+        /* Light grey */
+        border-top: 16px solid #3498db;
+        /* Blue */
+        width: 200px;
+        height: 200px;
+
+    }
+
+    th:first-child,
+    td:first-child {
+        color: red;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
 }
