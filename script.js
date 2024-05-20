@@ -14,8 +14,6 @@ function apiChoose() {
         planetsFetch(chooseValue);
     } else if (chooseValue === "species") {
         speciesFetch(chooseValue);
-    } else if (chooseValue === "starships") {
-        starshipsFetch(chooseValue);
 
     }
 
@@ -176,6 +174,97 @@ function peopleFetch(chooseValue) {
         });
 }
 
+
+function planetsFetch(chooseValue) {
+    startLoader()
+    document.querySelector('tbody').style.display = 'none';
+    document.querySelector('tbody').innerHTML = '';
+    document.querySelector('th').innerHTML = "name";
+    document.querySelector('th:nth-child(2)').innerHTML = "population";
+    document.querySelector('th:nth-child(3)').innerHTML = "diameter";
+    document.querySelector('th:nth-child(4)').innerHTML = "climate";
+    document.querySelector('th:nth-child(5)').innerHTML = "terrain";
+    document.querySelector('th:nth-child(6)').innerHTML = "orbital_period";
+
+
+    fetch(`https://swapi.dev/api/${chooseValue}/`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("fetch unsuccessful");
+            } else {
+                return res.json();
+            }
+        })
+        .then(data => {
+            const arr = data.results;
+            console.log(arr);
+            arr.forEach(elem => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${elem.name}</td>
+                    <td>${elem.population}</td>
+                    <td>${elem.diameter}</td>
+                    <td>${elem.climate}</td>
+                    <td>${elem.terrain}</td>
+                    <td>${elem.orbital_period}</td>
+
+                `;
+                document.querySelector('tbody').appendChild(tr);
+            });
+
+            document.querySelector('tbody').style.display = 'table-row-group';
+            stopLoader();
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+
+function speciesFetch(chooseValue) {
+    startLoader()
+    document.querySelector('tbody').style.display = 'none';
+    document.querySelector('tbody').innerHTML = '';
+    document.querySelector('th').innerHTML = "name";
+    document.querySelector('th:nth-child(2)').innerHTML = "classification";
+    document.querySelector('th:nth-child(3)').innerHTML = "language";
+    document.querySelector('th:nth-child(4)').innerHTML = "skin_colors";
+    document.querySelector('th:nth-child(5)').innerHTML = "average_lifespan";
+    document.querySelector('th:nth-child(6)').innerHTML = "average_height";
+
+
+    fetch(`https://swapi.dev/api/${chooseValue}/`)
+        .then(res => {
+            if (!res.ok) {
+                throw new Error("fetch unsuccessful");
+            } else {
+                return res.json();
+            }
+        })
+        .then(data => {
+            const arr = data.results;
+            console.log(arr);
+            arr.forEach(elem => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${elem.name}</td>
+                    <td>${elem.classification}</td>
+                    <td>${elem.language}</td>
+                    <td>${elem.skin_colors}</td>
+                    <td>${elem.average_lifespan}</td>
+                    <td>${elem.average_height}</td>
+
+                `;
+                document.querySelector('tbody').appendChild(tr);
+            });
+
+            document.querySelector('tbody').style.display = 'table-row-group';
+            stopLoader();
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
 
 function extractId(url) {
     return url.split('/').slice(-2, -1)[0];
