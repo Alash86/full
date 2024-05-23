@@ -42,7 +42,6 @@ function apiChoose() {
             .then(data => {
                 const arr = data.results;
                 totalCharacters = arr.reduce((total, arr) => total + arr.characters.length, 0);
-                console.log(arr);
                 arr.forEach(elem => {
                     const tr = document.createElement("tr");
                     tr.innerHTML = `

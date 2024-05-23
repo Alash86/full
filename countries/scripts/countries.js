@@ -1,6 +1,7 @@
 let countries = [];
 let countriesFull = [];
 let countriesLike = [];
+import { hearts } from "./dom.js";
 
 
 const getDataAsync = async () => {
@@ -30,13 +31,12 @@ const search = (word) => {
 }
 
 const like = () => {
-    const hearts = document.querySelectorAll('.fa-heart');
     if (!localStorage) {
         countriesLike = []
         return;
     }
     else {
-        countriesLike = JSON.parse(localStorage.getItem('like'));
+        countriesLike = localStorage.getItem('like');
 
         hearts.forEach(heart => {
             if (countriesLike.includes(heart)) {

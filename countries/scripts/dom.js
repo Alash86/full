@@ -1,9 +1,9 @@
 import { countries, reset, search as goSearch, like } from './countries.js';
 let countriesLike = [];
-
+let index = 1;
+const hearts = document.querySelectorAll('.fa-heart');
 const search = document.getElementById('search');
 const cards = document.getElementById('cards');
-
 search.addEventListener('input', (e) => {
     const word = e.target.value;
     cards.innerHTML = '';
@@ -16,7 +16,8 @@ search.addEventListener('input', (e) => {
     createAllCards();
 });
 
-const createCard = (country) => {
+const createCard = (country, index) => {
+
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card shadow rounded m-2 col-md-3 col-sm-10';
 
@@ -40,6 +41,7 @@ const createCard = (country) => {
 
     const heartIcon = document.createElement('i');
     heartIcon.className = 'fa fa-heart text-secondary';
+    heartIcon.setAttribute('data-id', index);
 
     cardDiv.appendChild(cardImg);
 
@@ -54,27 +56,32 @@ const createCard = (country) => {
 }
 
 const createAllCards = () => {
-    countries.forEach((country) => {
-        createCard(country);
+    countries.forEach((country, index) => {
+        createCard(country, index);
+        index++;
     });
 }
 
 const iconChange = () => {
     const hearts = document.querySelectorAll('.fa-heart');
     hearts.forEach((heart) => {
-        heart.addEventListener('click', (e) => {
+        heart.addEventListener('click', (e,) => {
             if (e.target.classList.contains('text-secondary')) {
                 e.target.classList.remove('text-secondary');
                 e.target.classList.add(('text-danger'));
+                console.log(e.target);
                 countriesLike.push((e.target));
-                console.log(countriesLike)
-                localStorage.setItem('like', countriesLike);
+
             } else {
                 e.target.classList.remove('text-danger');
                 e.target.classList.add(('text-secondary'));
                 countriesLike.splice(countriesLike.indexOf(e.target), 1);
-            }
 
+            }
+            for (let i = 0; i < countriesLike.length; i++) {
+                localStorage.like = countriesLike
+                console.log(localStorage.like);
+            }
         });
     });
 
@@ -87,4 +94,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-export { createAllCards, iconChange };
+export { createAllCards, iconChange, hearts };
