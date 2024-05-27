@@ -24,9 +24,9 @@ function createBoard() {
         divs.push(div);
     }
 
-    win1 = localStorage.getItem('one');
+    win1 = localStorage ? localStorage.getItem('one') : 0;
     player1.innerText = win1;
-    win2 = localStorage.getItem('two');
+    win2 = localStorage ? localStorage.getItem('two') : 0;
     player2.innerText = win2;
 }
 
