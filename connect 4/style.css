@@ -133,4 +133,18 @@ button {
         width: 60px;
         height: 60px;
     }
+
+    #player1>h2,
+    #player2>h2,
+    span,
+    button {
+        font-size: 14px;
+
+    }
+
+    button {
+        width: 90px;
+        height: 40px;
+    }
+
 }
