@@ -113,7 +113,7 @@ function restoreTests() {
             newTask(task);
         }
     }
-    point = localStorage.x;
+    point = localStorage ? localStorage.x : 0;
 }
 
 function newTask(task) {
