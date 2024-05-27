@@ -1,6 +1,5 @@
-import { countries, reset, search as goSearch, like } from './countries.js';
-let countriesLike = [];
-let index = 1;
+import { countries, reset, goSearch, like } from './countries.js';
+let countriesLike = localStorage.getItem('like') ? localStorage.getItem('like').split(',') : [];
 const hearts = document.querySelectorAll('.fa-heart');
 const search = document.getElementById('search');
 const cards = document.getElementById('cards');
@@ -12,8 +11,12 @@ search.addEventListener('input', (e) => {
         cards.innerHTML = '';
         createAllCards();
     }
+
     goSearch(word);
     createAllCards();
+    iconChange();
+
+
 });
 
 const createCard = (country, index) => {
@@ -69,28 +72,24 @@ const iconChange = () => {
             if (e.target.classList.contains('text-secondary')) {
                 e.target.classList.remove('text-secondary');
                 e.target.classList.add(('text-danger'));
-                console.log(e.target);
-                countriesLike.push((e.target));
+                const dataId = heart.getAttribute('data-id');
+                countriesLike.push(dataId);
 
-            } else {
+            } else if (e.target.classList.contains('text-danger')) {
                 e.target.classList.remove('text-danger');
                 e.target.classList.add(('text-secondary'));
-                countriesLike.splice(countriesLike.indexOf(e.target), 1);
+                const dataId = heart.getAttribute('data-id');
+                countriesLike = countriesLike.filter(id => id !== dataId);
 
             }
-            for (let i = 0; i < countriesLike.length; i++) {
-                localStorage.like = countriesLike
-                console.log(localStorage.like);
-            }
+            localStorage.setItem('like', countriesLike)
+
         });
-    });
+    })
 
 
 }
-document.addEventListener('DOMContentLoaded', () => {
-    like();
-    iconChange();
-});
+
 
 
 

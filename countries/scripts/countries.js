@@ -1,7 +1,7 @@
 let countries = [];
 let countriesFull = [];
 let countriesLike = [];
-import { hearts } from "./dom.js";
+import { hearts, iconChange } from "./dom.js";
 
 
 const getDataAsync = async () => {
@@ -11,7 +11,6 @@ const getDataAsync = async () => {
             throw new Error("Network response was not ok");
         }
         const data = await res.json();
-        console.log(data);
         countries = data;
         countriesFull = [...data];
     } catch (err) {
@@ -21,31 +20,38 @@ const getDataAsync = async () => {
 
 const reset = () => {
     countries = [...countriesFull];
+    iconChange()
 }
 
-const search = (word) => {
+const goSearch = (word) => {
+
     countries = countries.filter((country) => {
         const name = country.name.common.toLowerCase();
         return name.includes(word.toLowerCase());
+
     });
+    iconChange();
+
 }
 
 const like = () => {
+    countriesLike = localStorage.getItem('like');
     if (!localStorage) {
         countriesLike = []
         return;
     }
     else {
-        countriesLike = localStorage.getItem('like');
-
-        hearts.forEach(heart => {
-            if (countriesLike.includes(heart)) {
-                heart.classList.remove('text-secondary')
-                heart.classList.add(('text-danger'))
+        const hearts = document.querySelectorAll('.fa-heart');
+        hearts.forEach(elem => {
+            const heartIds = elem.getAttribute('data-id');
+            if (countriesLike.includes(heartIds)) {
+                elem.classList.remove('text-secondary')
+                elem.classList.add('text-danger')
             }
+
         })
     }
 }
 
 
-export { getDataAsync, countries, search, reset, like };
+export { getDataAsync, countries, goSearch, reset, like };
