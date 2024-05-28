@@ -7,4 +7,3 @@ await getDataAsync();
 createAllCards();
 iconChange();
 like();
-

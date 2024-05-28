@@ -120,7 +120,6 @@ function peopleFetch(chooseValue) {
         .then(data => {
             const arr = data.results;
             totalFilms = arr.reduce((total, arr) => total + arr.films.length, 0);
-            console.log(arr);
             arr.forEach(elem => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `
@@ -196,7 +195,6 @@ function planetsFetch(chooseValue) {
         })
         .then(data => {
             const arr = data.results;
-            console.log(arr);
             arr.forEach(elem => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `

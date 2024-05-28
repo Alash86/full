@@ -23,16 +23,7 @@ const reset = () => {
     iconChange()
 }
 
-const goSearch = (word) => {
 
-    countries = countries.filter((country) => {
-        const name = country.name.common.toLowerCase();
-        return name.includes(word.toLowerCase());
-
-    });
-    iconChange();
-
-}
 
 const like = () => {
     countriesLike = localStorage.getItem('like');
@@ -51,6 +42,17 @@ const like = () => {
 
         })
     }
+}
+const goSearch = (word) => {
+
+    countries = countries.filter((country) => {
+        const name = country.name.common.toLowerCase();
+        return name.includes(word.toLowerCase());
+
+    });
+    iconChange();
+    like();
+
 }
 
 

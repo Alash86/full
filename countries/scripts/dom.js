@@ -82,6 +82,7 @@ const iconChange = () => {
                 countriesLike = countriesLike.filter(id => id !== dataId);
 
             }
+
             localStorage.setItem('like', countriesLike)
 
         });

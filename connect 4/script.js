@@ -19,14 +19,13 @@ function createBoard() {
 
     for (let i = 0; i < (width * height / 100); i++) {
         const div = document.createElement("div");
-        div.innerText = i;
         board.appendChild(div);
         divs.push(div);
     }
 
-    win1 = localStorage ? localStorage.getItem('one') : 0;
+    win1 = localStorage ? (localStorage.getItem('one') || 0) : 0;
     player1.innerText = win1;
-    win2 = localStorage ? localStorage.getItem('two') : 0;
+    win2 = localStorage ? (localStorage.getItem('two') || 0) : 0;
     player2.innerText = win2;
 }
 
