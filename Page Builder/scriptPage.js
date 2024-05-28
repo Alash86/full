@@ -13,7 +13,8 @@ const elementSelect = {
         'heightSize',
         'borderSize',
         'colorBorder',
-        'borderStyle'
+        'borderStyle',
+        'borderRadius'
     ],
     p: [
         'fontSize',
@@ -23,7 +24,8 @@ const elementSelect = {
         'heightSize',
         'borderSize',
         'colorBorder',
-        'borderStyle'
+        'borderStyle',
+        'borderRadius'
 
     ],
     input: [
@@ -32,14 +34,16 @@ const elementSelect = {
         'color',
         'content',
         'widthSize',
-        'heightSize'
+        'heightSize',
+        'borderRadius'
     ],
     button: [
         'fontSize',
         'color',
         'content',
         'widthSize',
-        'heightSize'
+        'heightSize',
+        'borderRadius'
     ],
 };
 
@@ -52,6 +56,15 @@ function paddingChange(elem) {
     page.style.padding = elem.value + 'px';
     savePage();
 }
+function widthChange(elem) {
+    page.style.width = elem.value + 'px';
+    savePage();
+}
+function heightChange(elem) {
+    page.style.height = elem.value + 'px';
+    savePage();
+}
+
 
 function pageToShow(id, elem) {
     document.querySelector('nav a.active').classList.remove('active');
@@ -97,6 +110,7 @@ function add() {
     const borderSize = document.querySelector('#borderSize input').value;
     const borderColor = document.querySelector('#colorBorder input').value;
     const borderStyle = document.querySelector('#borderStyle select').value;
+    const borderRadius = document.querySelector('#borderRadius input').value;
     const color = document.querySelector('#color input').value;
     const content = document.querySelector('#content input').value;
 
@@ -115,6 +129,8 @@ function add() {
             elem.style.borderColor = borderColor;
         } else if (param === 'borderStyle') {
             elem.style.borderStyle = borderStyle;
+        } else if (param === 'borderRadius') {
+            elem.style.borderRadius = borderRadius + '%';
         } else if (param === 'color') {
             elem.style.color = color;
         } else if (param === 'content') {
@@ -141,3 +157,8 @@ function restorePage() {
 }
 
 page.addEventListener('input', savePage);
+
+function removeAll() {
+    page.innerHTML = '';
+    savePage();
+}

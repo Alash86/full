@@ -27,7 +27,15 @@
 
                 <div class="field">
                     <label>ריווח פנימי של הדף</label>
-                    <input type="number" value="16" oninput="paddingChange(this)">
+                    <input type="number" value="" oninput="paddingChange(this)" placeholder="padding">
+                </div>
+                <div class="field">
+                    <label>רוחב המסך</label>
+                    <input type="number" value="" oninput="widthChange(this)">
+                </div>
+                <div class="field">
+                    <label>גובהה המסך</label>
+                    <input type="number" value="" oninput="heightChange(this)">
                 </div>
             </div>
 
@@ -95,7 +103,10 @@
                             <option value="double">double</option>
                         </select>
                     </div>
-
+                    <div id="borderRadius" class="field">
+                        <label> עיגול מסגרת</label>
+                        <input type="number">
+                    </div>
                     <div id="color" class="field">
                         <label>צבע טקסט</label>
                         <input type="color">
@@ -108,6 +119,7 @@
                 </div>
 
                 <button onclick="add()">הוסף</button>
+                <button onclick="removeAll()">נקה דף</button>
             </div>
         </div>
 
