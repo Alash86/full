@@ -123,3 +123,23 @@ button {
 button:hover {
     background-color: #5fc962;
 }
+
+@media screen and (max-width: 768px) {
+    #frame {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        position: relative;
+        width: 90vw;
+        margin: auto;
+    }
+
+    #main {
+        max-width: 100%;
+    }
+
+    #elements {
+        width: 90%;
+        margin: auto;
+    }
+}
