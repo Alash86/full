@@ -1,6 +1,8 @@
 const board = document.querySelector("#board");
 let val = document.querySelector("#nums").value;
 let operator = document.querySelector("#oper").value;
+let danger = document.querySelector('.danger');
+let check = document.querySelector('.check');
 let randomOne
 let randomTwo
 let total
@@ -13,41 +15,64 @@ task.appendChild(ol);
 
 
 function calculate() {
+    answer.style.display = 'inline-block';
+    danger.style.display = 'none';
+    check.style.display = 'none';
     val = document.querySelector("#nums").value;
     operator = document.querySelector("#oper").value;
     task.style.display = "none";
     switch (val) {
         case '1-10':
             randomOne = Math.floor(Math.random() * 10) + 1;
-            randomTwo = Math.floor(Math.random() * 10) + 1; break
+            randomTwo = Math.floor(Math.random() * 10) + 1;
+            if (randomOne < randomTwo) {
+                calculate()
+                return
+            }
+            break
         case '1-100':
             randomOne = Math.floor(Math.random() * 100) + 1;
-            randomTwo = Math.floor(Math.random() * 100) + 1; break
+            randomTwo = Math.floor(Math.random() * 100) + 1;
+            if (randomOne < randomTwo) {
+                calculate()
+                return
+            }
+            break
         case '1-1000':
             randomOne = Math.floor(Math.random() * 1000) + 1;
-            randomTwo = Math.floor(Math.random() * 1000) + 1; break
+            randomTwo = Math.floor(Math.random() * 1000) + 1;
+            if (randomOne < randomTwo) {
+                calculate()
+                return
+            }
+            break
         case '1-10000':
             randomOne = Math.floor(Math.random() * 10000) + 1;
-            randomTwo = Math.floor(Math.random() * 10000) + 1; break
+            randomTwo = Math.floor(Math.random() * 10000) + 1;
+            if (randomOne < randomTwo) {
+                calculate()
+                return
+            }
+            break
     }
 
     switch (operator) {
         case '+':
-            test = ` Question is : ${randomOne} + ${randomTwo} `;
+            test = ` Question is : ${randomOne} + ${randomTwo} ?`;
             total = randomOne + randomTwo;
-            result = `Answer : ${randomOne} + ${randomTwo} = ${total} `; break;
+            result = `${randomOne} + ${randomTwo} = ${total} `; break;
         case '-':
-            test = `Question is : ${randomOne} - ${randomTwo} `;
+            test = `Question is : ${randomOne} - ${randomTwo} ?`;
             total = randomOne - randomTwo;
-            result = `Answer : ${randomOne} - ${randomTwo} = ${total} `; break;
+            result = `${randomOne} - ${randomTwo} = ${total} `; break;
         case '*':
-            test = `Question is : ${randomOne} * ${randomTwo} `;
+            test = `Question is : ${randomOne} * ${randomTwo} ?`;
             total = randomOne * randomTwo;
-            result = `Answer : ${randomOne} * ${randomTwo} = ${total} `; break;
+            result = `${randomOne} * ${randomTwo} = ${total} `; break;
         case '/':
-            test = `Question is : ${randomOne} /${randomTwo} `;
-            total = randomOne / randomTwo;
-            result = `Answer : ${randomOne} / ${randomTwo} = ${total} `; break;
+            test = `Question is : ${randomOne} /${randomTwo} ?`;
+            total = (randomOne / randomTwo).toFixed(2);;
+            result = `${randomOne} / ${randomTwo} = ${total} `; break;
     }
 
     document.querySelector("#test").innerText = test;
@@ -74,22 +99,26 @@ function calculate() {
 
 }
 function checkRes() {
-    answer = document.querySelector("#answer").value;
-    if (answer === '' || answer === undefined) {
+    answer = document.querySelector("#answer");
+    if (answer.value === '' || answer.value === undefined) {
         alert('אנא הכנס תשובה')
         return;
     }
-    else if (answer == total) {
-        alert('התשובה נכונה')
+    else if (answer.value == total) {
+        danger.style.display = 'none';
+        check.style.display = 'flex';
+        answer.style.display = 'none';
         point++
-        answer = '';
+        answer.value = '';
 
     } else {
-        alert('התשובה לא נכונה')
-        answer = '';
+        check.style.display = 'none';
+        danger.style.display = 'flex';
+        answer.style.display = 'none';
+        answer.value = '';
     }
     task.style.display = "block";
-    document.querySelector("#points").innerText = `Correct answers is : ${point}`;
+    document.querySelector("#points").innerText = `Correct answers: ${point}`;
     localStorage.x = point;
     saveTests()
 }
@@ -140,4 +169,12 @@ function resetPoint() {
     localStorage.x = 0;
     point = 0;
     document.querySelector("#points").innerText = `Correct answers is : ${point}`;
+}
+function clearPage() {
+    localStorage.tasks = '';
+    let list = document.querySelectorAll('li')
+    for (let i = 0; i < list.length; i++) {
+        list[i].remove();
+    }
+
 }

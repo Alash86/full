@@ -94,4 +94,4 @@ const iconChange = () => {
 
 
 
-export { createAllCards, iconChange, hearts };
+export { createAllCards, iconChange, hearts, createCard };

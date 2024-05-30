@@ -54,6 +54,4 @@ const goSearch = (word) => {
     like();
 
 }
-
-
 export { getDataAsync, countries, goSearch, reset, like };
