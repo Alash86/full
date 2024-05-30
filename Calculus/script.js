@@ -15,6 +15,7 @@ task.appendChild(ol);
 
 
 function calculate() {
+    document.getElementById('boardTwo').style.display = 'none';
     answer.style.display = 'inline-block';
     danger.style.display = 'none';
     check.style.display = 'none';
@@ -105,6 +106,7 @@ function checkRes() {
         return;
     }
     else if (answer.value == total) {
+        document.getElementById('boardTwo').style.display = 'flex';
         danger.style.display = 'none';
         check.style.display = 'flex';
         answer.style.display = 'none';
@@ -112,6 +114,7 @@ function checkRes() {
         answer.value = '';
 
     } else {
+        document.getElementById('boardTwo').style.display = 'flex';
         check.style.display = 'none';
         danger.style.display = 'flex';
         answer.style.display = 'none';
