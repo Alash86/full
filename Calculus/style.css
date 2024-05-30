@@ -305,7 +305,7 @@ h2 {
 
     #res,
     #res>ol {
-
+        width: 75vw;
         font-size: 15px;
 
     }
