@@ -3,6 +3,10 @@ const player = document.querySelector('.player-deck');
 const computerSlot = document.querySelector('.computer-card-slot');
 const playerSlot = document.querySelector('.player-card-slot');
 const textSlot = document.querySelector('.text');
+const spanPC = document.getElementById('pcScore')
+const spanPl = document.getElementById('playerScore')
+let scorePl = 0
+let scorePC = 0
 let pcCount = computer.innerHTML;
 let playerCount = player.innerHTML;
 
@@ -100,6 +104,9 @@ function dealCard() {
 
         computer.innerHTML = pcCount;
         player.innerHTML = playerCount;
+        scorePC++
+        spanPC.innerText = scorePC;
+
 
     } else if (pcValue < playerValue) {
         textSlot.innerHTML = 'player win'
@@ -107,6 +114,8 @@ function dealCard() {
         ++pcCount;
         player.innerHTML = playerCount;
         computer.innerHTML = pcCount;
+        scorePl++;
+        spanPl.innerText = scorePl;
 
     }
     else if (pcValue == playerValue) {
