@@ -69,6 +69,11 @@ player.addEventListener('click', () => {
     dealCard();
 
 })
+computer.addEventListener('click', () => {
+    dealCard();
+
+})
+
 
 function dealCard() {
     const cardComputer = new Card(suits[Math.floor(Math.random() * suits.length)], cards[Math.floor(Math.random() * cards.length)])
