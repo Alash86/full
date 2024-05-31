@@ -164,13 +164,6 @@ h3 {
 
 
 
-.card.red {
-    color: red;
-}
-
-.card.black {
-    color: black;
-}
 
 .card::before,
 .card::after {
