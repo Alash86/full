@@ -6,10 +6,48 @@
     margin: 0;
 }
 
-.container {
+h1 {
+    font-size: 50px;
+    text-align: center;
+
+}
+
+#score {
+    display: flex;
+
+}
+
+#player {
+    width: 80px;
+    height: 80px;
+    background-color: blue;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin: auto;
-    width: 50vw;
-    height: 100vh;
+}
+
+#pc {
+    width: 80px;
+    height: 80px;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    text-align: center;
+}
+
+
+.container {
+    margin: 0 auto;
+    inset: 0;
+    width: 90vw;
+    height: 500px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -24,11 +62,13 @@
 
 .box,
 .boxTwo {
+    position: absolute;
     margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 
 }
 
@@ -55,25 +95,68 @@
     width: 50px;
     height: 90px;
     margin-bottom: 40px;
+
 }
 
-.text {
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.text {
+    font-size: 20px;
+    color: #000;
+    text-align: left;
+    margin-right: 170px;
+
+}
+
+.player-card-slot {
+    margin-bottom: 30px;
+
+}
+
+.computer-card-slot {
+    margin-bottom: 10px;
+
+
 }
 
 .card {
-    height: 80px;
-    width: 65px;
+    height: 85px;
+    width: 55px;
     border: 1px solid black;
     border-radius: .5rem;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    font-size: 2rem;
+    background-color: #fff;
+    position: relative;
+    animation: MyDiv;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-direction: right;
+
 }
+
+@keyframes MyDiv {
+    0% {
+        left: 0%;
+        opacity: 1;
+    }
+
+    50% {
+        left: 100%;
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+
+}
+
+
 
 .card.red {
     color: red;
@@ -86,7 +169,6 @@
 .card::before,
 .card::after {
     position: absolute;
-
     font-size: 1rem;
 }
 
