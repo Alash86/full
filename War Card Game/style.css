@@ -15,6 +15,11 @@ h1 {
 #score {
     display: flex;
 
+
+}
+
+h3 {
+    text-align: center;
 }
 
 #player {
@@ -120,8 +125,8 @@ h1 {
 }
 
 .card {
-    height: 85px;
-    width: 55px;
+    height: 90px;
+    width: 60px;
     border: 1px solid black;
     border-radius: .5rem;
     overflow: hidden;
