@@ -3,7 +3,8 @@ const player = document.querySelector('.player-deck');
 const computerSlot = document.querySelector('.computer-card-slot');
 const playerSlot = document.querySelector('.player-card-slot');
 const textSlot = document.querySelector('.text');
-
+let pcCount = computer.innerHTML;
+let playerCount = player.innerHTML;
 
 const suits = ["♠", "♣", "♥", "♦"]
 const cards = [
@@ -59,10 +60,6 @@ class Card {
     }
 }
 
-computer.addEventListener('click', () => {
-    dealCard();
-
-})
 
 player.addEventListener('click', () => {
     dealCard();
@@ -86,8 +83,33 @@ function dealCard() {
     divPlayer.style.color = color[Math.floor(Math.random() * color.length)]
     computerSlot.appendChild(divComputer)
     playerSlot.appendChild(divPlayer)
+    let pcValue = cardComputer.getValue();
+    let playerValue = cardPlayer.getValue();
 
+    setTimeout(() => {
+        computerSlot.innerHTML = '';
+    }, 1.9 * 1000);
+    setTimeout(() => {
+        playerSlot.innerHTML = '';
+    }, 1.9 * 1000);
+
+    if (pcValue > playerValue) {
+        textSlot.innerHTML = 'computer win'
+        pcCount = +pcCount - 1;
+        ++playerCount;
+
+        computer.innerHTML = pcCount;
+        player.innerHTML = playerCount;
+
+    } else if (pcValue < playerValue) {
+        textSlot.innerHTML = 'player win'
+        playerCount = +playerCount - 1;
+        ++pcCount;
+        player.innerHTML = playerCount;
+        computer.innerHTML = pcCount;
+
+    }
+    else if (pcValue == playerValue) {
+        textSlot.innerHTML = 'draw'
+    }
 }
-
-
-
