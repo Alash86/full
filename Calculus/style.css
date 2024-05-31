@@ -28,13 +28,13 @@ h1 {
 
 #board {
 
-    margin: auto;
+    margin: 20px auto;
     border-radius: 6px;
     text-align: center;
     display: inline-grid;
     color: white;
 
-    width: 85VW;
+    width: 65VW;
     min-height: 700px;
     height: 100%;
     display: flex;
@@ -55,12 +55,36 @@ h1 {
         linear-gradient(to right, #0867a6, #4aa9e8) border-box;
 }
 
+#boardTwo {
+    margin: 20px auto;
+    border-radius: 6px;
+    text-align: center;
+    display: none;
+    color: white;
+    width: 65VW;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: .25em;
+
+    /* border-width defines the width the blue gradient background (3) */
+    border: .25em solid transparent;
+
+    background:
+        /* (1) most inner gradient */
+        linear-gradient(to bottom, #fff, #dea6af) content-box,
+        /* (2) red gradient */
+        linear-gradient(to right, #e94332, #a91302) padding-box,
+        /* (3) blue gradient */
+        linear-gradient(to right, #0867a6, #4aa9e8) border-box;
+}
+
+
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: .25em solid black;
     width: 60%;
 
 }
@@ -113,7 +137,8 @@ input {
     width: 100%;
     font-size: 30px;
     color: #000;
-    margin: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     display: block;
     direction: ltr;
 }
@@ -123,18 +148,18 @@ input {
     font-size: 15px;
     color: #000;
     margin: 20px;
-    width: 80vw;
+    width: fit-content;
+    width: 65vw;
 }
 
 #res>ol {
     font-size: 25px;
     color: #000;
-    width: 700px;
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
-    width: 80vw;
+    width: 95%;
 }
 
 #res>ol>li {
@@ -143,7 +168,6 @@ input {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    width: 80vw;
 }
 
 #res>ol>li:last-child {
@@ -179,6 +203,7 @@ input {
 }
 
 h2 {
+    padding: 20px;
     text-align: left;
     color: #373957;
     font-style: italic;
@@ -197,7 +222,7 @@ h2 {
 
 .check {
     border-radius: 20px;
-    width: 220px;
+    width: 200px;
     height: 50px;
     font-size: 20px;
     font-weight: bold;
@@ -222,7 +247,7 @@ h2 {
 
 .danger {
     border-radius: 20px;
-    width: 220px;
+    width: 200px;
     height: 50px;
     font-size: 20px;
     font-weight: bold;
@@ -257,6 +282,11 @@ h2 {
 
 @media screen and (max-width: 768px) {
 
+    #board,
+    #boardTwo {
+        width: 85vw;
+    }
+
     label,
     select {
         font-size: 20px;
@@ -275,7 +305,7 @@ h2 {
 
     #res,
     #res>ol {
-
+        width: 75vw;
         font-size: 15px;
 
     }
