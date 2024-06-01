@@ -5,10 +5,15 @@ const playerSlot = document.querySelector('.player-card-slot');
 const textSlot = document.querySelector('.text');
 const spanPC = document.getElementById('pcScore')
 const spanPl = document.getElementById('playerScore')
-let scorePl = 0
-let scorePC = 0
+let scorePC = localStorage.getItem('pc') || 0;
+let scorePlayer = localStorage.getItem('player') || 0;
+
+spanPC.innerText = scorePC;
+
+spanPl.innerText = scorePlayer;
 let pcCount = computer.innerHTML;
 let playerCount = player.innerHTML;
+localStorage.getItem('pc')
 
 const suits = ["♠", "♣", "♥", "♦"]
 const cards = [
@@ -160,19 +165,25 @@ function checkScore(pcValue, playerValue) {
             war();
         }
     }
-    if (playerCount === 0) {
-        alert(' game over Computer Won!!')
+    if (playerCount <= 0) {
+        setTimeout(() => { alert(' game over Computer Won!! ') }, 1000)
         computer.innerHTML = '26';
         player.innerHTML = '26';
+        pcCount = 26
+        playerCount = 26
         scorePC++
         spanPC.innerHTML = scorePC
+        localStorage.setItem('pc', scorePC)
     }
-    if (pcCount === 0) {
-        alert(' game over Player Won!! ')
+    if (pcCount <= 0) {
+        setTimeout(() => { alert(' game over Player Won!! ') }, 1000)
         computer.innerHTML = '26';
         player.innerHTML = '26';
-        scorePl++
-        spanPl.innerHTML = scorePl
+        pcCount = 26
+        playerCount = 26
+        scorePlayer++
+        spanPl.innerHTML = scorePlayer
+        localStorage.setItem('player', scorePlayer)
 
 
     }
