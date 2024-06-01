@@ -65,23 +65,23 @@ class Card {
 }
 
 
-player.addEventListener('click', () => {
+player.addEventListener('click', (e) => {
+    e.preventDefault()
     dealCard();
 
 })
-computer.addEventListener('click', () => {
+computer.addEventListener('click', (e) => {
+    e.preventDefault()
     dealCard();
 
 })
 
 
 function dealCard() {
-    const cardComputer = new Card(suits[Math.floor(Math.random() * suits.length)], cards[Math.floor(Math.random() * cards.length)])
-    const cardPlayer = new Card(suits[Math.floor(Math.random() * suits.length)], cards[Math.floor(Math.random() * cards.length)])
+    const cardComputer = new Card(suits[Math.floor(Math.random() * suits.length)], cards[Math.floor(Math.random() * cards.length)], color[Math.floor(Math.random() * color.length)])
+    const cardPlayer = new Card(suits[Math.floor(Math.random() * suits.length)], cards[Math.floor(Math.random() * cards.length)], color[Math.floor(Math.random() * color.length)])
 
 
-    computerSlot.innerHTML = ''
-    playerSlot.innerHTML = ''
     const divComputer = document.createElement('div')
     const divPlayer = document.createElement('div')
     divComputer.innerHTML = cardComputer.getCard()
@@ -95,35 +95,112 @@ function dealCard() {
     let pcValue = cardComputer.getValue();
     let playerValue = cardPlayer.getValue();
 
+    time()
+    checkScore(pcValue, playerValue)
+
+}
+
+function time() {
     setTimeout(() => {
         computerSlot.innerHTML = '';
     }, 1.9 * 1000);
     setTimeout(() => {
         playerSlot.innerHTML = '';
     }, 1.9 * 1000);
+}
 
-    if (pcValue > playerValue) {
-        textSlot.innerHTML = 'computer win'
-        pcCount = +pcCount - 1;
-        ++playerCount;
+function checkScore(pcValue, playerValue) {
+    if (textSlot.innerHTML === ('WAR !!')) {
+        if (pcValue > playerValue) {
+            textSlot.innerHTML = 'computer win'
+            textSlot.style.color = 'black'
+            pcCount = pcCount + 5;
+            playerCount = playerCount - 5;
 
-        computer.innerHTML = pcCount;
-        player.innerHTML = playerCount;
-        scorePC++
-        spanPC.innerText = scorePC;
+            computer.innerHTML = pcCount;
+            player.innerHTML = playerCount;
+            scorePC = scorePC + 5
+            spanPC.innerText = scorePC;
 
 
-    } else if (pcValue < playerValue) {
-        textSlot.innerHTML = 'player win'
-        playerCount = +playerCount - 1;
-        ++pcCount;
-        player.innerHTML = playerCount;
-        computer.innerHTML = pcCount;
-        scorePl++;
-        spanPl.innerText = scorePl;
+        } else if (pcValue < playerValue) {
+            textSlot.style.color = 'black'
+            textSlot.innerHTML = 'player win'
+            playerCount = playerCount + 5;
+            pcCount = pcCount - 5;
+            player.innerHTML = playerCount;
+            computer.innerHTML = pcCount;
+            scorePl = scorePl + 5;
+            spanPl.innerText = scorePl;
 
+        }
+        else if (pcValue == playerValue) {
+            textSlot.innerHTML = 'WAR !!'
+            textSlot.style.color = 'red';
+            war();
+        }
+    } else {
+        if (pcValue > playerValue) {
+            textSlot.innerHTML = 'computer win'
+            textSlot.style.color = 'black'
+            pcCount++;
+            playerCount--;
+
+            computer.innerHTML = pcCount;
+            player.innerHTML = playerCount;
+            scorePC++
+            spanPC.innerText = scorePC;
+
+
+        } else if (pcValue < playerValue) {
+            textSlot.style.color = 'black'
+            textSlot.innerHTML = 'player win'
+            playerCount++
+            pcCount--;
+            player.innerHTML = playerCount;
+            computer.innerHTML = pcCount;
+            scorePl++;
+            spanPl.innerText = scorePl;
+
+        }
+        else if (pcValue == playerValue) {
+            textSlot.innerHTML = 'WAR !!'
+            textSlot.style.color = 'red';
+            war();
+        }
     }
-    else if (pcValue == playerValue) {
-        textSlot.innerHTML = 'draw'
+    if (playerCount === 0) {
+        alert(' game over Computer Won!!')
     }
+    if (pcCount === 0) {
+        alert(' game over Player Won!! ')
+    }
+}
+
+function war() {
+
+    const emptyDivPC = document.createElement('div');
+    emptyDivPC.classList.add('empty');
+    emptyDivPC.innerHTML = '3'
+    const emptyDivPlayer = document.createElement('div');
+    emptyDivPlayer.classList.add('empty');
+    emptyDivPlayer.innerHTML = '3'
+
+    setTimeout(() => {
+        computerSlot.appendChild(emptyDivPC);
+        playerSlot.appendChild(emptyDivPlayer);
+    }, 1.9 * 1000)
+    setTimeout(() => {
+        computerSlot.innerHTML = '';
+        playerSlot.innerHTML = '';
+    }, 3.5 * 1000)
+    setTimeout(() => {
+        dealCard()
+    }, 5 * 1000)
+
+
+
+
+
+
 }
