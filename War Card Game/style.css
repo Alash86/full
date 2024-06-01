@@ -14,8 +14,6 @@ h1 {
 
 #score {
     display: flex;
-
-
 }
 
 h3 {
@@ -139,7 +137,7 @@ h3 {
     animation: MyDiv;
     animation-duration: 2s;
     animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: ease-out;
     animation-direction: right;
 
 }
@@ -156,9 +154,20 @@ h3 {
     }
 
     100% {
-        left: 100%;
+        left: 100px;
         opacity: 0;
     }
+
+}
+
+.empty {
+    height: 90px;
+    width: 60px;
+    border: 1px solid black;
+    border-radius: .5rem;
+    position: relative;
+
+    margin-left: 120px;
 
 }
 
@@ -180,4 +189,20 @@ h3 {
     bottom: .5rem;
     right: .5rem;
     transform: rotate(180deg);
+}
+
+.empty {
+    height: 90px;
+    width: 60px;
+    border: 1px solid black;
+    border-radius: .5rem;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-image: url(./upside.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+
 }
