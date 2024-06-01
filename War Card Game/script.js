@@ -119,8 +119,6 @@ function checkScore(pcValue, playerValue) {
 
             computer.innerHTML = pcCount;
             player.innerHTML = playerCount;
-            scorePC = scorePC + 5
-            spanPC.innerText = scorePC;
 
 
         } else if (pcValue < playerValue) {
@@ -130,8 +128,6 @@ function checkScore(pcValue, playerValue) {
             pcCount = pcCount - 5;
             player.innerHTML = playerCount;
             computer.innerHTML = pcCount;
-            scorePl = scorePl + 5;
-            spanPl.innerText = scorePl;
 
         }
         else if (pcValue == playerValue) {
@@ -148,9 +144,6 @@ function checkScore(pcValue, playerValue) {
 
             computer.innerHTML = pcCount;
             player.innerHTML = playerCount;
-            scorePC++
-            spanPC.innerText = scorePC;
-
 
         } else if (pcValue < playerValue) {
             textSlot.style.color = 'black'
@@ -159,8 +152,6 @@ function checkScore(pcValue, playerValue) {
             pcCount--;
             player.innerHTML = playerCount;
             computer.innerHTML = pcCount;
-            scorePl++;
-            spanPl.innerText = scorePl;
 
         }
         else if (pcValue == playerValue) {
@@ -171,9 +162,19 @@ function checkScore(pcValue, playerValue) {
     }
     if (playerCount === 0) {
         alert(' game over Computer Won!!')
+        computer.innerHTML = '26';
+        player.innerHTML = '26';
+        scorePC++
+        spanPC.innerHTML = scorePC
     }
     if (pcCount === 0) {
         alert(' game over Player Won!! ')
+        computer.innerHTML = '26';
+        player.innerHTML = '26';
+        scorePl++
+        spanPl.innerHTML = scorePl
+
+
     }
 }
 
